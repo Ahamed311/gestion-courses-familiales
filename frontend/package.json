@@ -1,13 +1,29 @@
 {
-  "name": "frontend-courses",
-  "version": "0.1.0",
-  "private": true,
+  "name": "gestion-courses-frontend",
+  "version": "1.0.0",
+  "description": "Frontend React pour la gestion des courses familiales",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'Build completed'"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "frontend",
+    "courses"
+  ],
+  "author": "Votre Nom",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.18.2"
   },
-  "scripts": {
-    "start": "node server.js",
-    "build": "echo 'Build completed'",
-    "test": "echo 'No tests specified'"
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }

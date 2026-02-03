@@ -2,14 +2,14 @@
   "name": "gestion-courses-familiales",
   "version": "1.0.0",
   "description": "Application de gestion des courses familiales - Version simplifiée",
-  "main": "index.js",
+  "main": "backend/app.js",
   "scripts": {
-    "start": "concurrently \"cd backend && node app.js\" \"cd frontend && node server.js\"",
+    "start": "cd backend && npm install && npm start",
+    "build": "cd backend && npm install && cd ../frontend && npm install",
     "start:backend": "cd backend && node app.js",
     "start:frontend": "cd frontend && node server.js",
     "start:dev": "concurrently \"cd backend && nodemon app.js\" \"cd frontend && nodemon server.js\"",
     "test": "cd backend && npm test",
-    "build": "echo 'Application prête pour la production'",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f"

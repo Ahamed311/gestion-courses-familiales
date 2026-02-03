@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const path = require("path");
 require('dotenv').config();
 
 const pool = require("./db");
@@ -12,6 +13,11 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+
+// Servir les fichiers statiques du frontend en production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/public')));
+}
 
 // Initialiser la base de données au démarrage
 async function initializeTable() {
@@ -56,21 +62,21 @@ async function initializeTable() {
 }
 
 // Route de test pour vérifier que le serveur fonctionne
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({ 
     message: "API Gestion des courses familiales",
     version: "1.0.0 - Version simplifiée",
     endpoints: [
-      "POST /achats - Ajouter un achat",
-      "GET /achats - Historique des achats",
-      "GET /top-produit - Produit le plus acheté",
-      "GET /bilan - Bilan financier"
+      "POST /api/achats - Ajouter un achat",
+      "GET /api/achats - Historique des achats",
+      "GET /api/top-produit - Produit le plus acheté",
+      "GET /api/bilan - Bilan financier"
     ]
   });
 });
 
 // Route POST pour ajouter un achat
-app.post("/achats", async (req, res) => {
+app.post("/api/achats", async (req, res) => {
   const { produit, prix, date_achat } = req.body;
 
   // Validation des données
@@ -95,7 +101,7 @@ app.post("/achats", async (req, res) => {
 });
 
 // Route GET pour récupérer l'historique des achats (trié par date décroissante)
-app.get("/achats", async (req, res) => {
+app.get("/api/achats", async (req, res) => {
   try {
     const result = await pool.query(
       "SELECT * FROM achats ORDER BY date_achat DESC"
@@ -108,7 +114,7 @@ app.get("/achats", async (req, res) => {
 });
 
 // Route GET pour le top produit (le plus acheté par occurrences)
-app.get("/top-produit", async (req, res) => {
+app.get("/api/top-produit", async (req, res) => {
   try {
     const result = await pool.query(
       "SELECT produit FROM achats GROUP BY produit ORDER BY COUNT(*) DESC LIMIT 1"
@@ -129,7 +135,7 @@ app.get("/top-produit", async (req, res) => {
 });
 
 // Route GET pour le bilan financier (total des dépenses)
-app.get("/bilan", async (req, res) => {
+app.get("/api/bilan", async (req, res) => {
   try {
     const result = await pool.query(
       "SELECT SUM(prix) AS total_depenses FROM achats"
@@ -145,6 +151,13 @@ app.get("/bilan", async (req, res) => {
     res.status(500).json({ message: "Erreur serveur" });
   }
 });
+
+// Servir le frontend en production
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
+  });
+}
 
 // Initialiser la base de données au démarrage
 initializeTable();

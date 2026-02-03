@@ -3,7 +3,7 @@ const { useState, useEffect } = React;
 
 const API_BASE = window.location.hostname === 'localhost' ? 
   'http://localhost:3001' : 
-  `${window.location.protocol}//${window.location.hostname}:3001`;
+  '/api';
 
 function App() {
   // États pour l'application
