@@ -153,7 +153,7 @@ function App() {
           })
         ),
         React.createElement('div', { className: 'form-group' },
-          React.createElement('label', { htmlFor: 'prix' }, 'Prix (€) :'),
+          React.createElement('label', { htmlFor: 'prix' }, 'Prix (CFA) :'),
           React.createElement('input', {
             type: 'number',
             id: 'prix',
@@ -162,7 +162,7 @@ function App() {
             min: '0.01',
             value: formData.prix,
             onChange: handleInputChange,
-            placeholder: 'Ex: 2.50',
+            placeholder: 'Ex: 250',
             disabled: loading,
             required: true
           })
@@ -203,7 +203,7 @@ function App() {
         ),
         React.createElement('div', { className: 'stat-card' },
           React.createElement('div', { className: 'stat-value' },
-            loading ? '...' : `${totalDepenses.toFixed(2)}€`
+            loading ? '...' : `${totalDepenses.toFixed(2)} CFA`
           ),
           React.createElement('div', { className: 'stat-label' }, 'Total des dépenses')
         ),
@@ -239,7 +239,7 @@ function App() {
             achats.map((achat, index) =>
               React.createElement('tr', { key: achat.id || index },
                 React.createElement('td', null, achat.produit),
-                React.createElement('td', null, `${parseFloat(achat.prix).toFixed(2)}€`),
+                React.createElement('td', null, `${parseFloat(achat.prix).toFixed(2)} CFA`),
                 React.createElement('td', null, new Date(achat.date_achat).toLocaleDateString('fr-FR'))
               )
             )
