@@ -1,11 +1,13 @@
 const { Pool } = require("pg");
 require('dotenv').config();
 
-// Configuration pour la production (Render fournit DATABASE_URL ou variables PG*)
+// Configuration pour la production (Render fournit DATABASE_URL)
 const pool = process.env.DATABASE_URL ? 
   new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+    ssl: {
+      rejectUnauthorized: false
+    }
   }) :
   new Pool({
     host: process.env.PGHOST || process.env.DB_HOST || "localhost",
@@ -13,7 +15,7 @@ const pool = process.env.DATABASE_URL ?
     password: process.env.PGPASSWORD || process.env.DB_PASSWORD || "1234",
     database: process.env.PGDATABASE || process.env.DB_NAME || "courses",
     port: process.env.PGPORT || process.env.DB_PORT || 5432,
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+    ssl: false
   });
 
 module.exports = pool;
