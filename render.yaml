@@ -3,6 +3,7 @@ services:
     name: gestion-courses
     env: node
     plan: free
+    branch: main
     buildCommand: npm install
     startCommand: node backend/index.js
     envVars:
