@@ -5,7 +5,8 @@
   "main": "backend/index.js",
   "scripts": {
     "start": "node backend/index.js",
-    "build": "cd backend && npm install && cd ../frontend && npm install",
+    "build": "npm install",
+    "postinstall": "cd backend && npm install",
     "start:backend": "cd backend && node app.js",
     "start:frontend": "cd frontend && node server.js",
     "start:dev": "concurrently \"cd backend && nodemon app.js\" \"cd frontend && nodemon server.js\"",
