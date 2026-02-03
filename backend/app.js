@@ -22,6 +22,15 @@ if (process.env.NODE_ENV === 'production') {
 // Initialiser la base de données au démarrage
 async function initializeTable() {
   try {
+    console.log("🔗 Tentative de connexion à PostgreSQL...");
+    console.log("📍 Host:", process.env.PGHOST || "localhost");
+    console.log("📍 Database:", process.env.PGDATABASE || "courses");
+    console.log("📍 User:", process.env.PGUSER || "postgres");
+    
+    // Test de connexion
+    const testResult = await pool.query('SELECT NOW() as current_time');
+    console.log("✅ Connexion PostgreSQL établie:", testResult.rows[0].current_time);
+    
     // Table des achats (version simplifiée sans utilisateurs)
     await pool.query(`
       CREATE TABLE IF NOT EXISTS achats (
@@ -57,7 +66,13 @@ async function initializeTable() {
     console.log("✅ Index créés pour les performances");
     
   } catch (error) {
-    console.error("❌ Erreur lors de l'initialisation:", error);
+    console.error("❌ Erreur lors de l'initialisation:");
+    console.error("   Code:", error.code);
+    console.error("   Message:", error.message);
+    console.error("   Détails:", error.detail || "Aucun détail");
+    
+    // En cas d'erreur de connexion, on continue sans base de données
+    console.log("⚠️  L'application continue sans base de données");
   }
 }
 
