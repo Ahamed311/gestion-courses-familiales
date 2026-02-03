@@ -3,7 +3,7 @@ const { useState, useEffect } = React;
 
 const API_BASE = window.location.hostname === 'localhost' ? 
   'http://localhost:3001' : 
-  '/api';
+  'https://gestion-courses-familiales.onrender.com';
 
 function App() {
   // États pour l'application
