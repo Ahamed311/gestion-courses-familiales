@@ -32,19 +32,19 @@ function App() {
     
     try {
       // Charger l'historique
-      const achatsResponse = await fetch(`${API_BASE}/achats`);
+      const achatsResponse = await fetch(`${API_BASE}/api/achats`);
       if (!achatsResponse.ok) throw new Error('Erreur lors du chargement des achats');
       const achatsData = await achatsResponse.json();
       setAchats(achatsData);
 
       // Charger le top produit
-      const topResponse = await fetch(`${API_BASE}/top-produit`);
+      const topResponse = await fetch(`${API_BASE}/api/top-produit`);
       if (!topResponse.ok) throw new Error('Erreur lors du chargement du top produit');
       const topData = await topResponse.json();
       setTopProduit(topData.topProduit || 'Aucun');
 
       // Charger le bilan
-      const bilanResponse = await fetch(`${API_BASE}/bilan`);
+      const bilanResponse = await fetch(`${API_BASE}/api/bilan`);
       if (!bilanResponse.ok) throw new Error('Erreur lors du chargement du bilan');
       const bilanData = await bilanResponse.json();
       setTotalDepenses(bilanData.totalDepenses || 0);
@@ -77,7 +77,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`${API_BASE}/achats`, {
+      const response = await fetch(`${API_BASE}/api/achats`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
