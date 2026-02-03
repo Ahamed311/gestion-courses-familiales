@@ -1,0 +1,34 @@
+{
+  "name": "gestion-courses-familiales",
+  "version": "1.0.0",
+  "description": "Application de gestion des courses familiales - Version simplifiée",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd backend && node app.js\" \"cd frontend && node server.js\"",
+    "start:backend": "cd backend && node app.js",
+    "start:frontend": "cd frontend && node server.js",
+    "start:dev": "concurrently \"cd backend && nodemon app.js\" \"cd frontend && nodemon server.js\"",
+    "test": "cd backend && npm test",
+    "build": "echo 'Application prête pour la production'",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": [
+    "react",
+    "nodejs",
+    "postgresql",
+    "courses",
+    "familiales"
+  ],
+  "author": "Votre Nom",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.9"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

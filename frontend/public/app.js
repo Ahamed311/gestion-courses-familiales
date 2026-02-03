@@ -1,9 +1,12 @@
-// Application React compilée manuellement pour l'épreuve
+// Application React simplifiée sans authentification
 const { useState, useEffect } = React;
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = window.location.hostname === 'localhost' ? 
+  'http://localhost:3001' : 
+  `${window.location.protocol}//${window.location.hostname}:3001`;
 
 function App() {
+  // États pour l'application
   const [achats, setAchats] = useState([]);
   const [topProduit, setTopProduit] = useState('');
   const [totalDepenses, setTotalDepenses] = useState(0);
@@ -47,7 +50,7 @@ function App() {
       setTotalDepenses(bilanData.totalDepenses || 0);
 
     } catch (err) {
-      setError('Erreur de connexion au serveur. Vérifiez que le backend est démarré sur http://localhost:3001');
+      setError(err.message || 'Erreur de connexion au serveur');
       console.error('Erreur lors du chargement:', err);
     } finally {
       setLoading(false);
@@ -95,7 +98,6 @@ function App() {
           prix: '',
           date_achat: new Date().toISOString().split('T')[0]
         });
-        // Recharger les données
         await loadData();
       } else {
         setError(result.message || 'Erreur lors de l\'ajout');
@@ -127,7 +129,11 @@ function App() {
   }, [message, error]);
 
   return React.createElement('div', { className: 'container' },
-    React.createElement('h1', null, '🛒 Gestion des Courses Familiales'),
+    // Header
+    React.createElement('div', { className: 'header' },
+      React.createElement('h1', null, '🛒 Gestion des Courses Familiales'),
+      React.createElement('p', { className: 'subtitle' }, 'Application simplifiée pour gérer vos achats')
+    ),
     
     // Formulaire d'ajout
     React.createElement('div', { className: 'section' },
@@ -239,6 +245,11 @@ function App() {
             )
           )
         )
+    ),
+
+    // Footer
+    React.createElement('div', { className: 'footer' },
+      React.createElement('p', null, '🎉 Application prête pour la production - Version simplifiée')
     )
   );
 }
