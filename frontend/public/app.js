@@ -70,8 +70,8 @@ function App() {
       return;
     }
 
-    if (!formData.prix || parseFloat(formData.prix) <= 0) {
-      setError('Le prix doit être un nombre positif');
+    if (!formData.prix || parseInt(formData.prix) <= 0) {
+      setError('Le prix doit être un nombre entier positif');
       setLoading(false);
       return;
     }
@@ -84,7 +84,7 @@ function App() {
         },
         body: JSON.stringify({
           produit: formData.produit.trim(),
-          prix: parseFloat(formData.prix),
+          prix: parseInt(formData.prix),
           date_achat: formData.date_achat
         })
       });
@@ -158,8 +158,8 @@ function App() {
             type: 'number',
             id: 'prix',
             name: 'prix',
-            step: '0.01',
-            min: '0.01',
+            step: '1',
+            min: '1',
             value: formData.prix,
             onChange: handleInputChange,
             placeholder: 'Ex: 250',
@@ -203,7 +203,7 @@ function App() {
         ),
         React.createElement('div', { className: 'stat-card' },
           React.createElement('div', { className: 'stat-value' },
-            loading ? '...' : `${totalDepenses.toFixed(2)} CFA`
+            loading ? '...' : `${Math.round(totalDepenses)} CFA`
           ),
           React.createElement('div', { className: 'stat-label' }, 'Total des dépenses')
         ),
@@ -239,7 +239,7 @@ function App() {
             achats.map((achat, index) =>
               React.createElement('tr', { key: achat.id || index },
                 React.createElement('td', null, achat.produit),
-                React.createElement('td', null, `${parseFloat(achat.prix).toFixed(2)} CFA`),
+                React.createElement('td', null, `${Math.round(parseFloat(achat.prix))} CFA`),
                 React.createElement('td', null, new Date(achat.date_achat).toLocaleDateString('fr-FR'))
               )
             )

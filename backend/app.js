@@ -158,8 +158,8 @@ app.get("/api/bilan", async (req, res) => {
     
     const total = result.rows[0].total_depenses || 0;
     res.json({ 
-      totalDepenses: parseFloat(total),
-      message: `Total des dépenses : ${total} CFA`
+      totalDepenses: Math.round(parseFloat(total)),
+      message: `Total des dépenses : ${Math.round(parseFloat(total))} CFA`
     });
   } catch (err) {
     console.error("Erreur lors du calcul du bilan:", err);
