@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1770125612651" clover="3.2.0">
-  <project timestamp="1770125612651" name="All files">
-    <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2" elements="12" coveredelements="11" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1"/>
+<coverage generated="1770126356116" clover="3.2.0">
+  <project timestamp="1770126356116" name="All files">
+    <metrics statements="8" coveredstatements="8" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2" elements="18" coveredelements="18" complexity="0" loc="8" ncloc="8" packages="1" files="1" classes="1"/>
     <file name="topProduct.js" path="C:\Users\User\gestion-courses-familiales\backend\services\topProduct.js">
-      <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
-      <line num="3" count="1" type="stmt"/>
-      <line num="4" count="1" type="stmt"/>
-      <line num="5" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="7" count="1" type="stmt"/>
-      <line num="8" count="1" type="cond" truecount="1" falsecount="1"/>
-      <line num="12" count="1" type="stmt"/>
+      <metrics statements="8" coveredstatements="8" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+      <line num="7" count="4" type="cond" truecount="4" falsecount="0"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="11" count="3" type="stmt"/>
+      <line num="14" count="3" type="stmt"/>
+      <line num="15" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="19" count="3" type="stmt"/>
+      <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="24" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
